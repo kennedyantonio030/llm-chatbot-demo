@@ -1,5 +1,5 @@
 streamlit
-streamlit_chat
+streamlit-chat
 langchain
 langchain-openai
 langchain-community
