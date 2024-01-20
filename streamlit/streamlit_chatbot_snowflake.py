@@ -44,7 +44,7 @@ if len(df) is not None:
 
     if "generated" not in st.session_state:
         st.session_state["generated"] = [
-            "Hello ! Ask me anything about your DataFrame" + " 🤗 "
+            "Hello ! Ask me anything about your DataFrame"
         ]
 
     if "past" not in st.session_state:
@@ -58,7 +58,9 @@ if len(df) is not None:
     with container:
         with st.form(key="my_form", clear_on_submit=True):
             user_input = st.text_input(
-                "Query:", placeholder="Talk about your csv data here (:", key="input"
+                "Query:",
+                placeholder="Talk about your csv data here (:",
+                key="input"
             )
             submit_button = st.form_submit_button(label="Send")
 
@@ -78,5 +80,7 @@ if len(df) is not None:
                     avatar_style="adventurer",
                 )
                 message(
-                    st.session_state["generated"][i], key=str(i), avatar_style="bottts"
+                    st.session_state["generated"][i],
+                    key=str(i),
+                    avatar_style="bottts"
                 )

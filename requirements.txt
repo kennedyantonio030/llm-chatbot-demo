@@ -3,6 +3,10 @@ streamlit-chat
 langchain
 langchain-openai
 langchain-community
+langchain-experimental
+tabulate
 openai
 faiss-cpu
 tiktoken
+snowflake-snowpark-python
+matplotlib
