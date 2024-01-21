@@ -30,7 +30,7 @@ df = get_snowflake_table(conn, "picks_twenty_four")
 def generate_response(df_input, input_query):
     llm = ChatOpenAI(
         model_name="gpt-4",
-        temperature=0.2,
+        temperature=0.0,
         openai_api_key=openai_api_key
     )
 
