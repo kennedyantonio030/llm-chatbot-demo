@@ -7,7 +7,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders.dataframe import DataFrameLoader
 from langchain.vectorstores import FAISS
 
-OPEN_AI_KEY = os.environ.get("OPEN_AI_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 
 conn = st.connection("snowflake")
@@ -19,14 +19,14 @@ if len(df) is not None:
     loader = DataFrameLoader(df, "WIKI_DEATH_SUMMARY")
     data = loader.load()
 
-    embeddings = OpenAIEmbeddings(openai_api_key=OPEN_AI_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
     vectors = FAISS.from_documents(data, embeddings)
 
     chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(
             temperature=0.0,
             model_name="gpt-3.5-turbo",
-            openai_api_key=OPEN_AI_KEY,
+            openai_api_key=OPENAI_API_KEY,
         ),
         retriever=vectors.as_retriever(),
     )

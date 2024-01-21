@@ -6,7 +6,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.agents.agent_types import AgentType
 
 
-openai_api_key = os.environ.get("OPEN_AI_KEY")
+openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 
 # Page title

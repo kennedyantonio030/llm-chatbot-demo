@@ -10,7 +10,7 @@ st.set_page_config(page_title='🦜🔗 Ask the Data App')
 st.title('🦜🔗 Ask the Data App')
 
 # Get the OpenAI Key from Env Vars
-openai_api_key = os.environ.get("OPEN_AI_KEY")
+openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 # Get the snowflake connection
 conn = st.connection("snowflake")
