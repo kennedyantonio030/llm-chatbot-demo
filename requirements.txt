@@ -13,3 +13,5 @@ snowflake-snowpark-python
 duckduckgo-search
 wikipedia
 numexpr
+bs4
+langserve[all]
