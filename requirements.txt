@@ -4,9 +4,12 @@ langchain
 langchain-openai
 langchain-community
 langchain-experimental
+langchainhub
 tabulate
 openai
 faiss-cpu
 tiktoken
 snowflake-snowpark-python
-matplotlib
+duckduckgo-search
+wikipedia
+numexpr
