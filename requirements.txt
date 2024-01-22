@@ -11,6 +11,7 @@ faiss-cpu
 tiktoken
 snowflake-snowpark-python
 duckduckgo-search
+google-search-results
 wikipedia
 numexpr
 bs4
