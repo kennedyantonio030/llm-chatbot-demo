@@ -36,6 +36,7 @@ def create_llm_instance():
 conversation = create_llm_instance()
 
 st.title("GPT4All Chat")
+st.write("This method uses traditional message history in order to retain context.")  # noqa: E501
 
 
 if "llm_model" not in st.session_state:
