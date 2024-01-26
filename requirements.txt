@@ -16,6 +16,5 @@ google-search-results
 wikipedia
 wolframalpha
 bs4
-pyiemo
 langserve[all]
 snowflake-snowpark-python
