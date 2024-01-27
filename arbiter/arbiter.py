@@ -38,12 +38,14 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "Answer the following questions as best you can.",   # noqa: E501
+            "You are the Arbiter.  You are the judge of the game DEADPOOL. You have access to a data frame with a column called NAME, which represents celebrity picks for this year, 2024.  The PLAYERS column contains the game's participants.  When asked about the score or points in the game, you should apply the following formula (50 + (100-AGE)).  All of your judgments are final, and you should let the person asking the question know this.",   # noqa: E501
         ),
         MessagesPlaceholder(variable_name="history"),
         ("human", "{input}"),
     ]
 )
+
+# "Answer the following questions as best you can.",   # noqa: E501
 
 openai_api_key = st.secrets["llm"]["openai_api_key"]
 
