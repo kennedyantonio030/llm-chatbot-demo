@@ -2,7 +2,6 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.agents.agent_types import AgentType
-from langchain.agents import load_tools
 from langchain_community.chat_message_histories import (
     StreamlitChatMessageHistory,
 )  # noqa: E501
@@ -39,7 +38,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "Answer the following questions as best you can. You have access to the following tools: {tools}",   # noqa: E501
+            "Answer the following questions as best you can.",   # noqa: E501
         ),
         MessagesPlaceholder(variable_name="history"),
         ("human", "{input}"),
@@ -50,12 +49,10 @@ openai_api_key = st.secrets["llm"]["openai_api_key"]
 
 llm = ChatOpenAI(
     model_name="gpt-4",
-    temperature=0.0,
+    temperature=0.9,
     openai_api_key=openai_api_key,
     streaming=True,  # noqa: E501
 )
-
-tools = load_tools(["serpapi", "llm-math"], llm=llm)
 
 # Create Pandas DataFrame Agent
 agent = create_pandas_dataframe_agent(
@@ -66,7 +63,7 @@ agent = create_pandas_dataframe_agent(
     agent_executor_kwargs={"handle_parsing_errors": True},
 )
 
-chain = prompt | llm | agent
+chain = prompt | agent
 
 chain_with_history = RunnableWithMessageHistory(
     chain,
@@ -85,7 +82,7 @@ if prompt := st.chat_input():
     st.chat_message("human").write(prompt)
     # Note: new messages are saved to history automatically by Langchain
     config = {"configurable": {"session_id": "any"}}
-    response = chain_with_history.invoke({"input": prompt, "tools": tools}, config)
+    response = chain_with_history.invoke({"input": prompt}, config)
     st.chat_message("ai").write(response["output"])
 
 
