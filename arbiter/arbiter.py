@@ -2,8 +2,7 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.agents.agent_types import AgentType
-
-
+from langchain.agents import load_tools
 from langchain_community.chat_message_histories import (
     StreamlitChatMessageHistory,
 )  # noqa: E501
@@ -12,8 +11,8 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 
 # Page title
-st.set_page_config(page_title="🦜🔗 Ask the Arbiter 🦜🔗")
-st.title("🦜🔗 Ask the Arbiter 🦜🔗")
+st.set_page_config(page_title="☠️ Ask the Arbiter ☠️")
+st.title("☠️ Ask the Arbiter ☠️")
 
 # Set up memory
 msgs = StreamlitChatMessageHistory(key="langchain_messages")
@@ -35,26 +34,28 @@ def get_snowflake_table(_conn, table_name):
 # Fetch the table
 df = get_snowflake_table(conn, "picks_twenty_four")
 
-
 # Generate LLM response
 prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are an AI chatbot having a conversation with a human.",
-        ),  # noqa: E501
+            "Answer the following questions as best you can. You have access to the following tools: {tools}",   # noqa: E501
+        ),
         MessagesPlaceholder(variable_name="history"),
         ("human", "{input}"),
     ]
 )
 
 openai_api_key = st.secrets["llm"]["openai_api_key"]
+
 llm = ChatOpenAI(
     model_name="gpt-4",
     temperature=0.0,
     openai_api_key=openai_api_key,
     streaming=True,  # noqa: E501
 )
+
+tools = load_tools(["serpapi", "llm-math"], llm=llm)
 
 # Create Pandas DataFrame Agent
 agent = create_pandas_dataframe_agent(
@@ -84,7 +85,7 @@ if prompt := st.chat_input():
     st.chat_message("human").write(prompt)
     # Note: new messages are saved to history automatically by Langchain
     config = {"configurable": {"session_id": "any"}}
-    response = chain_with_history.invoke({"input": prompt}, config)
+    response = chain_with_history.invoke({"input": prompt, "tools": tools}, config)
     st.chat_message("ai").write(response["output"])
 
 

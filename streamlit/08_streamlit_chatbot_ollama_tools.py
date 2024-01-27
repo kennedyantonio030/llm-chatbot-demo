@@ -4,7 +4,6 @@ from langchain_community.chat_message_histories import (
     StreamlitChatMessageHistory,
 )  # noqa: E501
 from langchain.agents import create_react_agent, load_tools, AgentExecutor
-from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import PromptTemplate
 
 st.title("Ollama Chat")
