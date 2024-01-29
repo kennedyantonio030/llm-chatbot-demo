@@ -31,7 +31,10 @@ def get_snowflake_table(_conn, table_name):
 
 
 # Fetch the table
-df = get_snowflake_table(conn, "picks_twenty_four")
+df_picks = get_snowflake_table(conn, "picks")
+
+# Fetch the table
+df_players = get_snowflake_table(conn, "players")
 
 # Generate LLM response
 prompt = ChatPromptTemplate.from_messages(
@@ -59,7 +62,7 @@ llm = ChatOpenAI(
 # Create Pandas DataFrame Agent
 agent = create_pandas_dataframe_agent(
     llm,
-    df,
+    [df_picks, df_players],
     verbose=True,
     agent_type=AgentType.OPENAI_FUNCTIONS,
     agent_executor_kwargs={"handle_parsing_errors": True},
