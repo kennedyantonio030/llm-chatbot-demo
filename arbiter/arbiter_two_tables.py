@@ -31,7 +31,8 @@ def get_snowflake_table(_conn, table_name):
 
 
 # Fetch the table
-df_picks = get_snowflake_table(conn, "picks")
+df_picks_raw = get_snowflake_table(conn, "picks")
+df_picks = df_picks_raw[df_picks_raw["YEAR"] == 2024]
 
 # Fetch the table
 df_players = get_snowflake_table(conn, "players")
