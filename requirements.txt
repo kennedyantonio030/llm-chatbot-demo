@@ -5,6 +5,7 @@ langchain-openai
 langchain-community
 langchain-experimental
 langchainhub
+langgraph
 gpt4all
 openai
 faiss-cpu
@@ -16,5 +17,8 @@ google-search-results
 wikipedia
 wolframalpha
 bs4
+langsmith
+pandas
+matplotlib
 langserve[all]
 snowflake-snowpark-python
