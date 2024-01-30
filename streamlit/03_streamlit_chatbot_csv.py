@@ -29,7 +29,9 @@ if uploaded_file:
 
     chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(
-            temperature=0.0, model_name="gpt-3.5-turbo", openai_api_key=user_api_key
+            temperature=0.0,
+            model_name="gpt-3.5-turbo",
+            openai_api_key=user_api_key
         ),
         retriever=vectors.as_retriever(),
     )
