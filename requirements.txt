@@ -21,4 +21,5 @@ langsmith
 pandas
 matplotlib
 langserve[all]
-snowflake-snowpark-python
+snowflake-snowpark-python[pandas]
+snowflake-sqlalchemy
