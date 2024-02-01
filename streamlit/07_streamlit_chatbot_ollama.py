@@ -30,7 +30,7 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 # llm = ChatOllama(model="llama2:7b-chat", streaming=True)
-llm = ChatOllama(model="codellamawh", streaming=True)
+llm = ChatOllama(model="llama2", streaming=True)
 
 chain = prompt | llm
 chain_with_history = RunnableWithMessageHistory(
