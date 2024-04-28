@@ -1,9 +1,11 @@
 streamlit
 streamlit-chat
+groq
 langchain
 langchain-openai
 langchain-community
 langchain-experimental
+langchain-groq
 langchainhub
 langgraph
 gpt4all
