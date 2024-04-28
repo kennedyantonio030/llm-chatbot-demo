@@ -1,12 +1,9 @@
 import streamlit as st
 import os
-from groq import Groq
-import random
 
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain_groq import ChatGroq
-from langchain.prompts import PromptTemplate
 
 
 def main():
