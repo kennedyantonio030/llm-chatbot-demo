@@ -8,8 +8,6 @@ from langchain_community.chat_message_histories import (
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-
-# Page title
 st.set_page_config(page_title="☠️ Ask the Arbiter ☠️")
 st.title("☠️ Ask the Arbiter ☠️")
 
@@ -27,6 +25,7 @@ conn = st.connection("snowflake")
 @st.cache_data(ttl=3600)
 def get_snowflake_table(_conn, table_name):
     snowflake_table = _conn.session()
+    print(snowflake_table)
     return snowflake_table.table(table_name).to_pandas()
 
 
