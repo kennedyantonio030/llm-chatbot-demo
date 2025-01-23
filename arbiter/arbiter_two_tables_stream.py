@@ -13,7 +13,6 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 st.set_page_config(page_title="☠️ Ask the Arbiter ☠️")
 st.title("☠️ Ask the Arbiter ☠️")
 
-# Set up memory
 msgs = StreamlitChatMessageHistory(key="langchain_messages")
 if len(msgs.messages) == 0:
     msgs.add_ai_message("How can I help you?")
@@ -55,7 +54,7 @@ openai_api_key = st.secrets["llm"]["openai_api_key"]
 
 llm = ChatOpenAI(
     model_name="gpt-4",
-    temperature=0.9,
+    temperature=0.8,
     openai_api_key=openai_api_key,
     streaming=True,  # noqa: E501
 )
